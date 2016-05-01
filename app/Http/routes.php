@@ -1,12 +1,8 @@
 <?php
 
 
-Route::get('/', function () {
-    $people = ['Taylor', 'Matt', 'Jeffrey'];
+Route::get('/', 'PagesController@home');
 
-    return view('welcome', compact('people'));
-});
+Route::get('about', 'PagesController@about');
 
-Route::get('about', function () {
-    return view('pages.about');
-});
+
