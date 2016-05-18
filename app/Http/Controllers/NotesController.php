@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Card;
 use App\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class NotesController extends Controller
@@ -26,11 +27,14 @@ class NotesController extends Controller
         //]);
 
         //$card->notes()->create($request->all());
-
-        $card->addNote(
-            new Note($request->all())
-        );
-
+        //$note = new Note($request->all());
+        //$note->by(Auth::user());
+        //$card->addNote($note);
+        $this->validate($request, [
+            'body' => 'required|min:10'
+        ] );
+        $note = new Note($request->all());
+        $card->addNote($note, 1);
         return back();
     }
 
@@ -45,3 +49,4 @@ class NotesController extends Controller
         return back();
     }
 }
+
