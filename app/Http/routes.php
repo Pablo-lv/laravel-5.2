@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => []], function () {
+Route::group(['middleware' => ['web']], function () {
     Route::get('cards', 'CardsController@index');
     Route::get('cards/{card}', 'CardsController@show');
 
@@ -8,8 +8,9 @@ Route::group(['middleware' => []], function () {
 
     Route::get('notes/{note}/edit', 'NotesController@edit');
     Route::patch('notes/{note}', 'NotesController@update');
+
+    Route::auth();
+    Route::get('/dashboard', 'HomeController@index');
 });
 
-Route::auth();
 
-Route::get('/home', 'HomeController@index');
