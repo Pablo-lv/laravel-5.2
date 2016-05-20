@@ -34,7 +34,7 @@ class NotesController extends Controller
             'body' => 'required|min:10'
         ] );
         $note = new Note($request->all());
-        $card->addNote($note, 1);
+        $card->addNote($note, Auth::user());
         return back();
     }
 
