@@ -9,8 +9,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('notes/{note}/edit', 'NotesController@edit');
     Route::patch('notes/{note}', 'NotesController@update');
 
-    Route::auth();
-    Route::get('/dashboard', 'HomeController@index');
+
+});
+Route::auth();
+Route::get('/dashboard', 'HomeController@index');
+
+Route::get('/', function () {
+    flash('You are now signed in!', 'success');
+    return view('welcome');
 });
 
 
